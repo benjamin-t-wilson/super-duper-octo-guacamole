@@ -61,4 +61,4 @@ const sqlDelete = async (table, condition) => {
   }
 }
 
-module.exports = { sqlInsert, sqlSelect, sqlDelete };
+module.exports = { sqlInsert, sqlSelect, sqlDelete, createDbConnection };

@@ -4,7 +4,8 @@
   "description": "Basic Node.js server",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
+    "test-watch": "jest --watchAll",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
@@ -23,6 +24,7 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "helmet": "^6.0.0",
+    "jest": "^29.0.2",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.19"
   }
