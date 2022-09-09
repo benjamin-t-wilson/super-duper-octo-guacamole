@@ -1,4 +1,4 @@
-const { sqlInsert, sqlSelect } = require("./mySqlService.js");
+const { sqlInsert, sqlSelect, sqlDelete } = require("./mySqlService.js");
 
 const insertNewTodo = async (req) => {
   const { name, description } = req.body;
@@ -76,4 +76,25 @@ const addTodoItem = async (req) => {
   };
 };
 
-module.exports = { insertNewTodo, getTodo, addTodoItem };
+const deleteTodoItem = async (req) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return { status: 400, data: "Missing todo list item ID" };
+  }
+
+  const result = await sqlDelete("todo_items", `todo_items.id = ${id}`);
+
+  if (result.errno) {
+    return { status: 500, data: { message: result.code } };
+  }
+
+  return {
+    status: 204,
+    data: {
+      affectedRows: result[0].affectedRows,
+    },
+  };
+};
+
+module.exports = { insertNewTodo, getTodo, addTodoItem, deleteTodoItem };

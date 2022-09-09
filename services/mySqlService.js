@@ -46,4 +46,19 @@ const sqlSelect = async (table, condition) => {
   }
 };
 
-module.exports = { sqlInsert, sqlSelect };
+const sqlDelete = async (table, condition) => {
+    const db = await createDbConnection();
+
+  let sqlString = `DELETE FROM ${table} WHERE ${condition}`;
+
+  try {
+    const result = await db.query(sqlString);
+    await db.end();
+    return result;
+  } catch (err) {
+    await db.end();
+    return err;
+  }
+}
+
+module.exports = { sqlInsert, sqlSelect, sqlDelete };
