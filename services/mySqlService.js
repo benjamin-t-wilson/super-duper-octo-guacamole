@@ -15,7 +15,7 @@ const sqlInsert = async (table, data) => {
   const values = Object.values(data);
   const sqlString = `INSERT INTO ${table} (${columns.join(
     ","
-  )}) VALUES (${values.map((val) => "?").join(",")});`;
+  )}) VALUES (${values.map((val) => "?").join(",")})`;
 
   try {
     const result = await db.query(sqlString, values);

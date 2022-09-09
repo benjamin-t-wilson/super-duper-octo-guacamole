@@ -1,5 +1,9 @@
 const router = require("express").Router();
-const { insertNewTodo, getTodo } = require("../services/todoService.js");
+const {
+  insertNewTodo,
+  getTodo,
+  addTodoItem,
+} = require("../services/todoService.js");
 
 router.post("/new", async (req, res) => {
   const result = await insertNewTodo(req);
@@ -9,6 +13,12 @@ router.post("/new", async (req, res) => {
 
 router.get("/:name", async (req, res) => {
   const result = await getTodo(req);
+
+  return res.status(200).json(result.data);
+});
+
+router.post("/item", async (req, res) => {
+  const result = await addTodoItem(req);
 
   return res.status(200).json(result.data);
 });
