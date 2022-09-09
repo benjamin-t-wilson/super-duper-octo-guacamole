@@ -1,10 +1,16 @@
 const router = require("express").Router();
-const {insertNewTodo} = require("../services/todoService.js")
+const { insertNewTodo, getTodo } = require("../services/todoService.js");
 
 router.post("/new", async (req, res) => {
-    const result = await insertNewTodo(req)
+  const result = await insertNewTodo(req);
 
-    return res.status(result.status).json(result.data);
-})
+  return res.status(result.status).json(result.data);
+});
+
+router.get("/:name", async (req, res) => {
+  const result = await getTodo(req);
+
+  return res.status(200).json(result.data);
+});
 
 module.exports = router;

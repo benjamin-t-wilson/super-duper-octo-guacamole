@@ -15,13 +15,35 @@ const sqlInsert = async (table, data) => {
   const values = Object.values(data);
   const sqlString = `INSERT INTO ${table} (${columns.join(
     ","
-  )}) VALUES (${values.map((val) => "?").join(",")})`;
+  )}) VALUES (${values.map((val) => "?").join(",")});`;
 
   try {
-    return await db.query(sqlString, values);
+    const result = await db.query(sqlString, values);
+    await db.end();
+    return result;
   } catch (err) {
+    await db.end();
     return err;
   }
 };
 
-module.exports = { sqlInsert };
+const sqlSelect = async (table, condition) => {
+  const db = await createDbConnection();
+
+  let sqlString = `SELECT * FROM ${table}`;
+
+  if (condition) {
+    sqlString += ` WHERE ${condition};`;
+  }
+
+  try {
+    const result = await db.query(sqlString);
+    await db.end();
+    return result;
+  } catch (err) {
+    await db.end();
+    return err;
+  }
+};
+
+module.exports = { sqlInsert, sqlSelect };
