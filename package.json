@@ -1,0 +1,19 @@
+{
+  "name": "super-duper-octo-guacamole",
+  "version": "1.0.0",
+  "description": "Basic Node.js server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamin-t-wilson/super-duper-octo-guacamole.git"
+  },
+  "author": "Benjamin Wilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjamin-t-wilson/super-duper-octo-guacamole/issues"
+  },
+  "homepage": "https://github.com/benjamin-t-wilson/super-duper-octo-guacamole#readme"
+}
