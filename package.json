@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/benjamin-t-wilson/super-duper-octo-guacamole/issues"
   },
-  "homepage": "https://github.com/benjamin-t-wilson/super-duper-octo-guacamole#readme"
+  "homepage": "https://github.com/benjamin-t-wilson/super-duper-octo-guacamole#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "helmet": "^6.0.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.19"
+  }
 }
