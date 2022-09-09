@@ -1,8 +1,11 @@
 const { insertNewTodo } = require("../../services/todoService.js");
+const { sqlInsert } = require("../../services/mySqlService.js");
 
-jest.mock("mysql2/promise", () => ({
-  createConnection: () => ({ query: () => [{ insertId: 1, affectedRows: 1 }], end: () => jest.fn() }),
-}));
+jest.mock("../../services/mySqlService.js");
+
+beforeEach(() => {
+  sqlInsert.mockImplementation(() => [{ insertId: 1, affectedRows: 1 }]);
+});
 
 describe("insertNewTodo tests", () => {
   it("returns status 400 if missing name", async () => {
