@@ -25,17 +25,26 @@ const insertNewTodo = async (req) => {
 const getTodo = async (req) => {
   const { name } = req.params;
 
-  const result = await sqlSelect("todos", `todos.name = '${name}'`);
+  const todo = await sqlSelect("todos", `todos.name = '${name}'`);
 
-  if (result.errno) {
-    return { status: 500, data: { message: result.code } };
+  if (todo.errno) {
+    return { status: 500, data: { message: todo.code } };
   }
 
-  if (!result[0]) {
+  if (!todo[0]) {
     return { status: 404, data: "Unable to find todo with that name" };
   }
 
-  return { status: 200, data: result[0] };
+  const items = await sqlSelect(
+    "todo_items",
+    `todo_items.todos_name = '${name}'`
+  );
+
+  if (items.errno) {
+    return { status: 500, data: { message: items.code } };
+  }
+
+  return { status: 200, data: { todo: todo.flat()[0], items: items[0] } };
 };
 
 const addTodoItem = async (req) => {
