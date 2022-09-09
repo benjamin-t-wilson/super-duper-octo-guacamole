@@ -14,8 +14,8 @@ describe("insertNewTodo tests", () => {
   });
 
   it("returns status 400 if missing description", async () => {
-    const missingName = await insertNewTodo({ body: { name: "test" } });
-    expect(missingName.status).toBe(400);
+    const missingDesc = await insertNewTodo({ body: { name: "test" } });
+    expect(missingDesc.status).toBe(400);
   });
 
   it("returns status 201 if both keys are present", async () => {
